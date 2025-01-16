@@ -1,0 +1,31 @@
+.container {
+  padding: 20px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.virtual-scroll {
+  height: 400px;
+  width: 100%;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  overflow: auto;
+}
+
+.result-item {
+  height: 30px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-history {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  li {
+    color: #2196F3;
+    cursor: pointer;
+  }
+}

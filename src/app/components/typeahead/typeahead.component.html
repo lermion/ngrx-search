@@ -1,0 +1,27 @@
+<div class="container">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Type to search..."
+      [formControl]="searchControl"
+    />
+  </mat-form-field>
+  <ul class="search-history">
+    <li *ngFor="let query of (searchHistory$ | async)" (click)="setSearch(query)">
+      {{ query }}
+    </li>
+  </ul>
+
+  <ng-container *ngIf="results$ | async as results">
+    <cdk-virtual-scroll-viewport
+      itemSize="30"
+      class="virtual-scroll"
+      (scrolledIndexChange)="onScroll($event, results)">
+      <div *cdkVirtualFor="let result of results" class="result-item">
+        {{ result.title }}
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
+</div>
