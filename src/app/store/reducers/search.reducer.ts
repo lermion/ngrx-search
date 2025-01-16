@@ -17,15 +17,19 @@ export const initialState: SearchState = {
 
 export const searchReducer = createReducer(
   initialState,
-  on(searchQuery, (state, { query }) => ({
-    ...state,
-    query,
-    page: 1,
-    results: [],
-    searchHistory: state.searchHistory.includes(query)
-      ? state.searchHistory
-      : [...state.searchHistory, query]
-  })),
+  on(searchQuery, (state, { query }) => {
+    const newWords: string[] = query
+      .split(/\s+/)
+      .map((word: string) => word.trim())
+      .filter((word: string) => word.length > 0 && !state.searchHistory.includes(word));
+    return ({
+      ...state,
+      query,
+      page: 1,
+      results: [],
+      searchHistory: [...state.searchHistory, ...newWords],
+    })
+  }),
   on(searchSuccess, (state, { results }) => ({ ...state, results })),
   on(loadMoreResultsSuccess, (state, { results }) => ({
     ...state,

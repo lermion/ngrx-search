@@ -8,7 +8,7 @@ import {
   loadMoreResults,
   loadMoreResultsSuccess,
 } from '../actions/search.actions';
-import { debounceTime, switchMap, map, withLatestFrom, tap } from 'rxjs/operators';
+import { debounceTime, switchMap, map, withLatestFrom } from 'rxjs/operators';
 import { selectQuery } from '../selectors/search.selectors';
 
 @Injectable()
